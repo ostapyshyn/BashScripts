@@ -95,3 +95,40 @@ Explanation of `if else` script:
 - In case of success you should get java version which is 11 or higher (`"$java_version" -ge 11`), which will print success message.
 
 </details>
+<details>
+<summary>User Processes</summary>
+ <br />
+
+- Write a bash script using any editor that checks all the processes running for the current user (USER env var) and prints out the processes in console.
+Hint: use `ps aux` command and grep for the user.
+- Extend the previous script to ask for a user input for sorting the processes output either by memory or CPU consumption, and print the sorted list.
+- Extend the previous script to ask additionally for user input about how many processes to print. Hint: use `head` program to limit the number of outputs. 
+
+-----
+
+**script:**
+```sh
+#!/bin/bash
+
+echo -n "Would you like to sort the processes output by memory or CPU? (m/c) "
+read sortby
+echo -n "How many results do you want to display? "
+read lines
+
+if [ "$sortby" = "m" ]
+then
+    ps aux --sort -%mem | grep "PID\|`whoami`" | head -n "$lines"
+elif [ "$sortby" = "c" ]
+then
+    ps aux --sort -%cpu | grep -i "PID\|$USER" | head -n "$lines"
+else
+    echo "No input provided. Exiting"
+fi
+```
+
+`echo -n`: -n: do not output the trailing newline
+`ps aux --sort -%cpu`: sort by cpu utilization of the process in "##.#" format.  Currently, it is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a percentage.
+`ps aux --sort -%mem`: sort by ratio of the process's resident set size to the physical memory on the machine, expressed as a percentage
+`ps aux --sort -rss`: sort by resident set size, the non-swapped physical memory that a task has used (in kilobytes)
+
+</details>
