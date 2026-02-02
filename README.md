@@ -134,7 +134,7 @@ fi
 </details>
 
 <details>
-<summary>User Processes</summary>
+<summary>Application</summary>
  <br />
 
 - Write a bash script that helps to automate.
@@ -180,9 +180,7 @@ esac
 ```
 
 `echo -n`: -n: do not output the trailing newline
-`ps aux --sort -%cpu`: sort by cpu utilization of the process in "##.#" format.  Currently, it is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a percentage.
-`ps aux --sort -%mem`: sort by ratio of the process's resident set size to the physical memory on the machine, expressed as a percentage
-`ps aux --sort -rss`: sort by resident set size, the non-swapped physical memory that a task has used (in kilobytes)
+
 
 </details>
 
