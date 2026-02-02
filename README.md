@@ -132,3 +132,58 @@ fi
 `ps aux --sort -rss`: sort by resident set size, the non-swapped physical memory that a task has used (in kilobytes)
 
 </details>
+
+<details>
+<summary>User Processes</summary>
+ <br />
+
+- Write a bash script that helps to automate.
+
+
+-----
+
+**script:**
+```sh
+#!/bin/bash
+
+help() {
+  echo "
+  Usage:
+    ./application init - init working directory and database
+    ./application clean - clean working directory and stop database
+    ./application build - run JUnit tests to check app health (-skipTests arg to skip tests) and build jar
+    ./application up - launch the application
+  "
+}
+
+case $1 in
+help)
+  help
+  ;;
+init)
+  init
+  ;;
+clean)
+  clean
+  ;;
+build)
+  build $2
+  ;;
+up)
+  up
+  ;;
+*)
+  echo "$1 command is not valid"
+  exit 1
+  ;;
+esac
+```
+
+`echo -n`: -n: do not output the trailing newline
+`ps aux --sort -%cpu`: sort by cpu utilization of the process in "##.#" format.  Currently, it is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a percentage.
+`ps aux --sort -%mem`: sort by ratio of the process's resident set size to the physical memory on the machine, expressed as a percentage
+`ps aux --sort -rss`: sort by resident set size, the non-swapped physical memory that a task has used (in kilobytes)
+
+</details>
+
+-----
